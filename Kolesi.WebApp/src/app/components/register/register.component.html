@@ -1,0 +1,13 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <p>First name</p>
+  <input formControlName="firstName" type="text">
+  <p>Last name</p>
+  <input formControlName="lastName" type="text">
+  <p>Email</p>
+  <input formControlName="email" type="text">
+  <p>Password</p>
+  <input formControlName="password" type="password">
+  <p>Confirm</p>
+  <input formControlName="confirm" type="password">
+  <button type="submit">REGISTER</button>
+</form>

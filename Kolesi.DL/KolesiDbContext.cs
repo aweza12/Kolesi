@@ -1,4 +1,5 @@
 ﻿using Kolesi.DL.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Kolesi.DL
 {
-    public class KolesiDbContext : DbContext
+    public class KolesiDbContext : IdentityDbContext<User>
     {
         public DbSet<Bicycle> Bicycles { get; set; } = null!;
         public KolesiDbContext(DbContextOptions<KolesiDbContext> options)
@@ -20,6 +21,8 @@ namespace Kolesi.DL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Bicycle>().HasData(
                     new Bicycle { Id = Guid.NewGuid(), Name = "My"}
             );
