@@ -1,6 +1,7 @@
 using Kolesi.BL.Dto;
 using Kolesi.BL.IServices;
 using Kolesi.BL.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -22,6 +23,7 @@ namespace Kolesi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public Task<BicycleDto> Get()
         {
             return _bicycleService.GetFirst();

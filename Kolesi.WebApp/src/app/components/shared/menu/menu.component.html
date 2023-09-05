@@ -1,7 +1,43 @@
-<div class="topnav d-flex bd-highlight">
+<!-- <div class="topnav d-flex bd-highlight">
   <div class="topnav-header p-2 align-self-baseline bd-highlight"><a [routerLink]="['/']">Kolesi</a></div>
-  <div class="topnav-link p-2 align-self-baseline bd-highlight"><a [routerLink]="['/warehouses']">Warehouses</a></div>
-  <div class="topnav-link me-auto p-2 align-self-baseline bd-highlight"><a [routerLink]="['/employees']">Employees</a></div>
+  <div class="topnav-link p-2 align-self-baseline bd-highlight dropdown"><a [routerLink]="['/warehouses']">Bicycles</a></div>
+  <div class="topnav-link me-auto p-2 align-self-baseline bd-highlight"><a [routerLink]="['/employees']">Components</a></div>
   <div class="topnav-name p-2 align-self-baseline bd-highlight"><a [routerLink]="['/register']">Admin Admin</a></div>
   <div class="topnav-img p-2 align-self-baseline bd-highlight"><a [routerLink]="['/login']"><img src="../../assets/images/user-default-logo.svg" alt="User logo" width="50" height="60"></a></div>
-</div>
+</div> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/']">KOLESI</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Bicycles
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Create a bike</a></li>
+            <li><a class="dropdown-item" href="#">My bikes</a></li>
+            <li><a class="dropdown-item" href="#">Ready-to-use assemblies</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Components
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Add a spare part</a></li>
+            <li><a class="dropdown-item" href="#">Spare parts catalog</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div *ngIf='!isUserAuthenticated' class="topnav-name ps-2 pe-2 align-self-baseline bd-highlight"><a [routerLink]="['/login']">Login</a></div>
+      <div *ngIf='!isUserAuthenticated' class="topnav-name ps-2 pe-2 align-self-baseline bd-highlight"><a [routerLink]="['/register']">Register</a></div>
+      <button *ngIf='isUserAuthenticated' class="btn btn-link" style="color: #ffffff80;" (click)="logout()">Logout</button>
+      <div *ngIf='isUserAuthenticated'  class="topnav-img ps-2 pe-2 align-self-baseline bd-highlight"><a [routerLink]="['/login']"><img src="../../assets/images/user-default-logo.svg" alt="User logo" width="60" height="60"></a></div>
+    </div>
+  </div>
+</nav>
