@@ -8,36 +8,48 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['/']">KOLESI</a>
+    <a class="navbar-brand" [routerLink]="['/']">
+      <img src="../../assets/images/navbar-rect.svg" alt="User logo" width="60" height="60" class="d-inline-block align-text-top">
+      KOLESI
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Bicycles
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Create a bike</a></li>
-            <li><a class="dropdown-item" href="#">My bikes</a></li>
-            <li><a class="dropdown-item" href="#">Ready-to-use assemblies</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/create-bike']">Create a bike</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/my-bikes']">My bikes</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/ready-bikes']">Ready-to-use assemblies</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Components
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Add a spare part</a></li>
-            <li><a class="dropdown-item" href="#">Spare parts catalog</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/add-part']">Add a spare part</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/ready-parts']">Spare parts catalog</a></li>
           </ul>
         </li>
       </ul>
-      <div *ngIf='!isUserAuthenticated' class="topnav-name ps-2 pe-2 align-self-baseline bd-highlight"><a [routerLink]="['/login']">Login</a></div>
-      <div *ngIf='!isUserAuthenticated' class="topnav-name ps-2 pe-2 align-self-baseline bd-highlight"><a [routerLink]="['/register']">Register</a></div>
+      <ul *ngIf='!isUserAuthenticated' class="navbar-nav me-0 mb-2 mb-lg-0">
+        <li class="auth-link ps-2 pe-2"><a [routerLink]="['/login']">Login</a></li>
+        <li class="auth-link ps-2 pe-2"><a [routerLink]="['/register']">Register</a></li>
+      </ul>
+
+      <ul *ngIf='isUserAuthenticated' class="navbar-nav me-0 mb-2 mb-lg-0">
+        <li class="auth-link ps-2 pe-2 align-self-end"><a [routerLink]="['/logout']">Logout</a></li>
+        <li class="auth-link ps-2 pe-2"><a [routerLink]="['/user']"><img src="../../assets/images/user-default-logo.svg" alt="User logo" width="60" height="60"></a></li>
+      </ul>
+      <!-- <div *ngIf='!isUserAuthenticated' class="topnav-name ps-2 pe-2 align-self-end bd-highlight"><a [routerLink]="['/login']">Login</a></div>
+      <div *ngIf='!isUserAuthenticated' class="topnav-name ps-2 pe-2 align-self-end bd-highlight"><a [routerLink]="['/register']">Register</a></div>
       <button *ngIf='isUserAuthenticated' class="btn btn-link" style="color: #ffffff80;" (click)="logout()">Logout</button>
-      <div *ngIf='isUserAuthenticated'  class="topnav-img ps-2 pe-2 align-self-baseline bd-highlight"><a [routerLink]="['/login']"><img src="../../assets/images/user-default-logo.svg" alt="User logo" width="60" height="60"></a></div>
+      <div *ngIf='isUserAuthenticated'  class="topnav-img ps-2 pe-2 align-self-end bd-highlight"><a [routerLink]="['/login']"><img src="../../assets/images/user-default-logo.svg" alt="User logo" width="60" height="60"></a></div> -->
     </div>
   </div>
 </nav>

@@ -19,6 +19,12 @@ namespace Kolesi.BL.MappingConfigurator
             CreateMap<User, UserRegistrationDto>()
                 .ForMember(u => u.Email, opt => opt.MapFrom(x => x.UserName))
                 .ReverseMap();
+            CreateMap<User, UserDto>()
+                .ForMember(u => u.Email, opt => opt.MapFrom(x => x.UserName))
+                .ReverseMap();
+            CreateMap<UserDto, User>()
+                .ForMember(u => u.UserName, opt => opt.MapFrom(x => x.Email))
+                .ReverseMap();
             /*CreateMap<User, UserRegistrationDto>();
             CreateMap<UserRegistrationDto, User>();*/
         }

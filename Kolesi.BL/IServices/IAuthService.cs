@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Kolesi.DL.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Kolesi.BL.IServices
     public interface IAuthService
     {
         public SigningCredentials GetSigningCredentials();
-        public List<Claim> GetClaims(IdentityUser user);
+        public Task<List<Claim>> GetClaims(User user);
         public JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims);
     }
 }

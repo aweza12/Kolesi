@@ -9,6 +9,7 @@ import { ErrorHandlerService } from './helpers/error-handler.service';
 import { AuthResponseDto } from '../models/AuthResponseDto';
 import { UserAuthDto } from '../models/UserAuthDto';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,7 @@ export class AuthService {
     private http: HttpClient,
     private errorHandler: ErrorHandlerService,
     private router: Router,
+    private jwtHelper: JwtHelperService
     ) { }
 
   // public registerUser = (route: string, body: UserRegistrationDto) => {
@@ -30,12 +32,26 @@ export class AuthService {
   // private createCompleteRoute = (route: string, envAddress: string) => {
   //   return `${envAddress}/${route}`;
   // }
+
+  public isUserAuthenticated = (): boolean => {
+    const token = localStorage.getItem("jwt");
+
+    return !!token && !this.jwtHelper.isTokenExpired(token);
+  }
+
+  public isUserAdmin = (): boolean => {
+    const token = localStorage.getItem("token");
+    const decodedToken = token !== null ? this.jwtHelper.decodeToken(token) : null;
+    const role = decodedToken !== null ? decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] : null;
+    return role === 'Administrator';
+  }
+
   public sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
     this.authChangeSub.next(isAuthenticated);
   }
 
   public logout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("jwt");
     this.sendAuthStateChangeNotification(false);
   }
 

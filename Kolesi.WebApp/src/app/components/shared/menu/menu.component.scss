@@ -41,7 +41,10 @@
 // .topnav-img {
 //   font-size: 38px;
 // }
-
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
 
 .dropdown-toggle::after {
   display:none;
@@ -61,6 +64,16 @@
   color: #ffffff;
   font-family: Kanit;
   font-size: 38px;
+  font-weight: 400;
+  line-height: 46px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.auth-link {
+  color: #ffffff !important;
+  font-family: Kanit;
+  font-size: 24px;
   font-weight: 400;
   line-height: 46px;
   letter-spacing: 0em;

@@ -26,6 +26,10 @@ namespace Kolesi.DL
             modelBuilder.Entity<Bicycle>().HasData(
                     new Bicycle { Id = Guid.NewGuid(), Name = "My"}
             );
+            modelBuilder.Entity<Role>().HasData(
+                new Role { Id = Guid.NewGuid().ToString(), Name = "Admin"},
+                new Role { Id = Guid.NewGuid().ToString(), Name = "User" }
+            );
         }
     }
 }

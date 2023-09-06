@@ -36,6 +36,8 @@ namespace Kolesi.WebAPI.Controllers
                 return BadRequest(new RegistrationResponseDto { Errors = errors });
             }
 
+            await _userManager.AddToRoleAsync(user, "User");
+
             return StatusCode(201);
         }
 
@@ -48,7 +50,7 @@ namespace Kolesi.WebAPI.Controllers
                 return Unauthorized(new AuthResponseDto { ErrorMessage = "Invalid Authentication" });
 
             var signingCredentials = _authService.GetSigningCredentials();
-            var claims = _authService.GetClaims(user);
+            var claims = await _authService.GetClaims(user);
             var tokenOptions = _authService.GenerateTokenOptions(signingCredentials, claims);
             var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
 
