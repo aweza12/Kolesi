@@ -13,10 +13,12 @@ export class MenuComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.authService.authChanged
-    .subscribe(res => {
-      this.isUserAuthenticated = res;
-    })
+    this.isUserAuthenticated = this.authService.isUserAuthenticated();
+
+    // this.authService.authChanged
+    // .subscribe(res => {
+    //   this.isUserAuthenticated = res;
+    // })
   }
 
   public logout = () => {

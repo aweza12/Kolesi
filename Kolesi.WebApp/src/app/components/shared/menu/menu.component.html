@@ -38,13 +38,13 @@
         </li>
       </ul>
       <ul *ngIf='!isUserAuthenticated' class="navbar-nav me-0 mb-2 mb-lg-0">
-        <li class="auth-link ps-2 pe-2"><a [routerLink]="['/login']">Login</a></li>
-        <li class="auth-link ps-2 pe-2"><a [routerLink]="['/register']">Register</a></li>
+        <li class="auth-link ps-2 pe-2"><a class="auth-link-href" [routerLink]="['/login']">Login</a></li>
+        <li class="auth-link ps-2 pe-2"><a class="auth-link-href" [routerLink]="['/register']">Register</a></li>
       </ul>
 
       <ul *ngIf='isUserAuthenticated' class="navbar-nav me-0 mb-2 mb-lg-0">
-        <li class="auth-link ps-2 pe-2 align-self-end"><a [routerLink]="['/logout']">Logout</a></li>
-        <li class="auth-link ps-2 pe-2"><a [routerLink]="['/user']"><img src="../../assets/images/user-default-logo.svg" alt="User logo" width="60" height="60"></a></li>
+        <li class="auth-link ps-2 pe-2 align-self-end"><a class="auth-link-href" [routerLink]="['/logout']">Logout</a></li>
+        <li class="auth-link ps-2 pe-2"><a class="auth-link-href" [routerLink]="['/user']"><img src="../../assets/images/user-default-logo.svg" alt="User logo" width="60" height="60"></a></li>
       </ul>
       <!-- <div *ngIf='!isUserAuthenticated' class="topnav-name ps-2 pe-2 align-self-end bd-highlight"><a [routerLink]="['/login']">Login</a></div>
       <div *ngIf='!isUserAuthenticated' class="topnav-name ps-2 pe-2 align-self-end bd-highlight"><a [routerLink]="['/register']">Register</a></div>

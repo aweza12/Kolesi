@@ -16,8 +16,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
 
-  private authChangeSub = new Subject<boolean>()
-  public authChanged = this.authChangeSub.asObservable();
+  //private authChangeSub = new Subject<boolean>()
+  //public authChanged = this.authChangeSub.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -36,6 +36,10 @@ export class AuthService {
   public isUserAuthenticated = (): boolean => {
     const token = localStorage.getItem("jwt");
 
+    let t: boolean = !!token;
+    let i: boolean = !this.jwtHelper.isTokenExpired(token);
+
+
     return !!token && !this.jwtHelper.isTokenExpired(token);
   }
 
@@ -46,13 +50,13 @@ export class AuthService {
     return role === 'Administrator';
   }
 
-  public sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
-    this.authChangeSub.next(isAuthenticated);
-  }
+  // public sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
+  //   this.authChangeSub.next(isAuthenticated);
+  // }
 
   public logout = () => {
     localStorage.removeItem("jwt");
-    this.sendAuthStateChangeNotification(false);
+    //this.sendAuthStateChangeNotification(false);
   }
 
   register(body: UserRegistrationDto) {
@@ -80,7 +84,7 @@ export class AuthService {
 					localStorage.setItem('jwt', response.token as string);
 					//localStorage.setItem("refreshToken", response.refreshToken as string);
 					//localStorage.setItem("refreshTokenExpiresIn", String(response.refreshTokenExpiresIn));
-          this.sendAuthStateChangeNotification(response.isAuthSuccessful);
+          //this.sendAuthStateChangeNotification(response.isAuthSuccessful);
 					//this.router.navigate(['/']);
 				}),
 				catchError((error: HttpErrorResponse) => {
